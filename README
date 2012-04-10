@@ -1,0 +1,75 @@
+CDYNE Call Me WordPress Plugin
+For most up-to-date information, visit:
+http://cdynecallme.howdymedia.com/
+
+This plugin will let you author your own scripted answering service utilizing CDYNE’s Phone Notify!® service. In order to use this plugin, you must set up an account with CDYNE to acquire an API key. A few of the many possible uses are community calendars, movie schedules, concert show times, school announcements and cancellations, and business department routing.
+
+The plugin is divided in to two sections, what is displayed on your website and the configuration. Since this is a widget, you can create multiple independent widgets all with different scripts and configurations. On the right sidebar, we have two widget examples running completely different types of scripts. The first features a full key-press navigation, and the second is simply a message that plays once and disconnects the call.
+
+1. Installation
+From your WordPress admin section, click ‘Add New’ from the ‘Plugins’ section. In the search box, enter ‘CDYNE Call Me’ and submit. The plugin should appear at the top, it will show H.O.W.D.Y. Media as the author. Click install. After the plugin is installed, make sure to activate it from the Plugins section.
+
+2. Adding the Widget to a Sidebar
+From your WordPress admin section, click ‘Widgets’ from the ‘Appearance’ section. If installation was successful, a widget named CDYNE Call Me should appear in your widget box. Simply drag the widget to whichever sidebar that the widget should appear on.
+
+3. Widget Options
+The top section in the widget allows you to define the title, add your own HTML or text, and define the submit button. This gives you full control over what to show in the sidebar.
+
+The bottom section contains all the CDYNE Phone Notify! settings, as well as your TextToSpeech (TTS) script. In order for the plugin to work, the API Key, Caller ID Number, Caller ID Name, and the TTS must be filled in. If your plugin does nothing, chances are you have not filled these fields in properly.
+
+API Key - Given to you from CDYNE, this allows you access to their services. Trial keys are available, so you do not need to purchase anything to try this out on your own website. Click here to get an API Key.
+
+TextToSpeech Script - Your message or script, complete with support for advanced commands.
+
+Voice - Various voices available which will read your script, listed by name with age and language support.
+
+Caller ID Number - This is the phone number to display to the receiver of the call. This must be at least a 10 digit number.
+
+Caller ID Name - The name to be displayed to the receiver of the call.
+
+Transfer Number (Optional) - If you do not specify a transfer number using the advanced commands, you can set a general number that will forward the call to the number entered. This must be at least a 10 digit number.
+
+4. TextToSpeech (TTS) Script
+To simply have a message read to the caller, enter your text making sure to use proper punctuation and spelling. Some words or names may not sound right, so you might need to change them to something more phonetically written. For instance, CDYNE isn’t a word, so using ‘c dine’ will ensure it is pronounced properly. Commas insert a slight pause, but to increase the pause, use the advanced command for playing silence.
+
+Advanced commands can be inserted in to your script to control both the flow and how to handle key presses. Below is the script used on the ‘Call Us 24-7' widget on our sidebar. Visit the link to see a full set of commands available.
+
+~\ActOnDigitPress(true)~
+~\AssignDTMF(0|forward)~
+~\AssignDTMF(1|about)~
+~\AssignDTMF(2|install)~
+~\AssignDTMF(3|support)~
+~\AssignDTMF(4|top)~
+~\SetVar(RepeatCount|0)~
+Hello. This is an example of the C dine Call Me plugin for WordPress.
+~\PlaySilence(1)~
+~\Label(top)~
+Press 1 to hear about the plugin, press 2 to hear about installation, press 3 to be forwarded to a live person, or press 4 to repeat this message. Hang up at any time to end this call.
+~\WaitForDTMF(5)~
+~\IncreaseVariable(RepeatCount|1)
+~\GotoIf(RepeatCount|3|goodbye)~
+~\Goto(top)~
+~\Label(about)~
+~\SetVar(RepeatCount|0)~
+This call is powered by a WordPress plugin using C dines PhoneNotify service, which enables you to create your own call center for community calendars, department routing, and more.
+~\PlaySilence(2)~
+~\Goto(top)~
+~\Label(install)~
+~\SetVar(RepeatCount|0)~
+Installation can be done automatically from your WordPress administration area.
+~\PlaySilence(1)~
+Simply click, add plugin, from the left hand sidebar and search for C Dine Call Me.
+~\PlaySilence(1)~
+Once installed, remember to activate the plugin.
+~\PlaySilence(1)~
+From there, under the appearance section, add the widget to a sidebar and configure as needed.
+~\PlaySilence(2)~
+~\Goto(top)~
+~\Label(forward)~
+~\Label(support)~
+You are being forwarded to a support specialist.
+~\TransferTo(13154698414)~
+~\Goto(support)~
+~\Label(goodbye)~
+Goodbye.
+~\EndCall()~
